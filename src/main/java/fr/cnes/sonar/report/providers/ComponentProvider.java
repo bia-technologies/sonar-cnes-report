@@ -119,7 +119,7 @@ public class ComponentProvider extends AbstractDataProvider {
         Object[] metrics = components.get(0).keySet().toArray();
 
         for(Object metric:metrics){
-            if (NumberUtils.isCreatable(components.get(0).get(metric).toString())) {
+            if (NumberUtils.isCreatable(components.get(0).get(metric.toString()).toString())) {
                 map.put("min" + metric.toString(), getMinMetric(metric.toString()));
                 map.put("max" + metric.toString(), getMaxMetric(metric.toString()));
                 map.put("mean" + metric.toString(), getMeanMetric(metric.toString()));

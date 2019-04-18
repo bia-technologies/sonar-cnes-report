@@ -442,74 +442,100 @@ public final class DataAdapter {
                 QUALITYPROFILEFILE_PLACEHOLDER,
                 report.getQualityProfilesFilename());
         // complexity metrics
-        replacementValues.put(
-                MINCOMPLEXITY_PLACEHOLDER,
-                report.getMetricsStats().get(MINCOMPLEXITY_STATKEY).toString()
-        );
-        replacementValues.put(
-                MAXCOMPLEXITY_PLACEHOLDER,
-                report.getMetricsStats().get(MAXCOMPLEXITY_STATKEY).toString()
-        );
-        replacementValues.put(
-                MEANCOMPLEXITY_PLACEHOLDER,
-                report.getMetricsStats().get(MEANCOMPLEXITY_STATKEY).toString()
-        );
+        try {
+            replacementValues.put(
+                    MINCOMPLEXITY_PLACEHOLDER,
+                    report.getMetricsStats().get(MINCOMPLEXITY_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MAXCOMPLEXITY_PLACEHOLDER,
+                    report.getMetricsStats().get(MAXCOMPLEXITY_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MEANCOMPLEXITY_PLACEHOLDER,
+                    report.getMetricsStats().get(MEANCOMPLEXITY_STATKEY).toString()
+            );
 
-        // coverage metrics
-        replacementValues.put(
-                MINCOVERAGE_PLACEHOLDER,
-                report.getMetricsStats().get(MINCOVERAGE_STATKEY).toString()
-        );
-        replacementValues.put(
-                MAXCOVERAGE_PLACEHOLDER,
-                report.getMetricsStats().get(MAXCOVERAGE_STATKEY).toString()
-        );
-        replacementValues.put(
-                MEANCOVERAGE_PLACEHOLDER,
-                report.getMetricsStats().get(MEANCOVERAGE_STATKEY).toString()
-        );
+            // coverage metrics
+            replacementValues.put(
+                    MINCOVERAGE_PLACEHOLDER,
+                    report.getMetricsStats().get(MINCOVERAGE_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MAXCOVERAGE_PLACEHOLDER,
+                    report.getMetricsStats().get(MAXCOVERAGE_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MEANCOVERAGE_PLACEHOLDER,
+                    report.getMetricsStats().get(MEANCOVERAGE_STATKEY).toString()
+            );
 
-        //comment density
-        replacementValues.put(
-                MINCOMMENTDENSITY_PLACEHOLDER,
-                report.getMetricsStats().get(MINCOMMENTDENSITY_STATKEY).toString()
-        );
-        replacementValues.put(
-                MAXCOMMENTDENSITY_PLACEHOLDER,
-                report.getMetricsStats().get(MAXCOMMENTDENSITY_STATKEY).toString()
-        );
-        replacementValues.put(
-                MEANCOMMENTDENSITY_PLACEHOLDER,
-                report.getMetricsStats().get(MEANCOMMENTDENSITY_STATKEY).toString()
-        );
+            //comment density
+            replacementValues.put(
+                    MINCOMMENTDENSITY_PLACEHOLDER,
+                    report.getMetricsStats().get(MINCOMMENTDENSITY_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MAXCOMMENTDENSITY_PLACEHOLDER,
+                    report.getMetricsStats().get(MAXCOMMENTDENSITY_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MEANCOMMENTDENSITY_PLACEHOLDER,
+                    report.getMetricsStats().get(MEANCOMMENTDENSITY_STATKEY).toString()
+            );
 
-        //code smells
-        replacementValues.put(
-                MINDUPLICATION_PLACEHOLDER,
-                report.getMetricsStats().get(MINDUPLICATION_STATKEY).toString()
-        );
-        replacementValues.put(
-                MAXDUPLICATION_PLACEHOLDER,
-                report.getMetricsStats().get(MAXDUPLICATION_STATKEY).toString()
-        );
-        replacementValues.put(
-                MEANDUPLICATION_PLACEHOLDER,
-                report.getMetricsStats().get(MEANDUPLICATION_STATKEY).toString()
-        );
+            //code smells
+            replacementValues.put(
+                    MINDUPLICATION_PLACEHOLDER,
+                    report.getMetricsStats().get(MINDUPLICATION_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MAXDUPLICATION_PLACEHOLDER,
+                    report.getMetricsStats().get(MAXDUPLICATION_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MEANDUPLICATION_PLACEHOLDER,
+                    report.getMetricsStats().get(MEANDUPLICATION_STATKEY).toString()
+            );
 
-        //bugs
-        replacementValues.put(
-                MINDUPLICATEDBLOCKS_PLACEHOLDER,
-                report.getMetricsStats().get(MINDUPLICATEDBLOCKS_STATKEY).toString()
-        );
-        replacementValues.put(
-                MAXDUPLICATEDBLOCKS_PLACEHOLDER,
-                report.getMetricsStats().get(MAXDUPLICATEDBLOCKS_STATKEY).toString()
-        );
-        replacementValues.put(
-                MEANDUPLICATEDBLOCKS_PLACEHOLDER,
-                report.getMetricsStats().get(MEANDUPLICATEDBLOCKS_STATKEY).toString()
-        );
+            //bugs
+            replacementValues.put(
+                    MINDUPLICATEDBLOCKS_PLACEHOLDER,
+                    report.getMetricsStats().get(MINDUPLICATEDBLOCKS_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MAXDUPLICATEDBLOCKS_PLACEHOLDER,
+                    report.getMetricsStats().get(MAXDUPLICATEDBLOCKS_STATKEY).toString()
+            );
+            replacementValues.put(
+                    MEANDUPLICATEDBLOCKS_PLACEHOLDER,
+                    report.getMetricsStats().get(MEANDUPLICATEDBLOCKS_STATKEY).toString()
+            );
+        }
+        catch (NullPointerException e){
+            ArrayList<String> placeholders = new ArrayList<>();
+            placeholders.add(MINCOMMENTDENSITY_PLACEHOLDER);
+            placeholders.add(MAXCOMMENTDENSITY_PLACEHOLDER);
+            placeholders.add(MEANCOMMENTDENSITY_PLACEHOLDER);
+            placeholders.add(MINCOMPLEXITY_PLACEHOLDER);
+            placeholders.add(MAXCOMPLEXITY_PLACEHOLDER);
+            placeholders.add(MEANCOMPLEXITY_PLACEHOLDER);
+            placeholders.add(MINCOVERAGE_PLACEHOLDER);
+            placeholders.add(MAXCOVERAGE_PLACEHOLDER);
+            placeholders.add(MEANCOVERAGE_PLACEHOLDER);
+            placeholders.add(MINDUPLICATEDBLOCKS_PLACEHOLDER);
+            placeholders.add(MAXDUPLICATEDBLOCKS_PLACEHOLDER);
+            placeholders.add(MEANDUPLICATEDBLOCKS_PLACEHOLDER);
+            placeholders.add(MINDUPLICATEDBLOCKS_PLACEHOLDER);
+            placeholders.add(MAXDUPLICATEDBLOCKS_PLACEHOLDER);
+            placeholders.add(MEANDUPLICATEDBLOCKS_PLACEHOLDER);
+            for(String placeholder: placeholders){
+                replacementValues.put(
+                        placeholder,
+                        "unknown"
+                );
+            }
+        }
 
 
         // Synthesis placeholders
