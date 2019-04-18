@@ -115,6 +115,7 @@ public class ComponentProvider extends AbstractDataProvider {
      * Generate a map with all metrics stats (for numerical metrics)
      * */
     public Map<String, Double> getMetricStats(){
+        if(components.size() == 0) return new HashMap<>();
         Map<String, Double> map = new HashMap();
         Object[] metrics = components.get(0).keySet().toArray();
 
