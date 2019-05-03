@@ -694,7 +694,10 @@ class RuleComparator implements Comparator<String>{
     }
 
     public int compare(String o1, String o2) {
-        int compare = report.getRule(o1).getSeverity().compareTo(
+        int compare = report.getRule(o1).getType().compareTo(
+                report.getRule(o2).getType()
+        );
+        if (compare == 0) compare = report.getRule(o1).getSeverity().compareTo(
                 report.getRule(o2).getSeverity()
         );
         if (compare == 0) compare = report.getRule(o1).getKey().compareTo(
