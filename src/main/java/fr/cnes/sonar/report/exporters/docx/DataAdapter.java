@@ -690,11 +690,17 @@ class RuleComparator implements Comparator<String>{
     Report report;
 
     RuleComparator(Report report){
+        System.out.println(report);
         this.report = report;
     }
 
     public int compare(String o1, String o2) {
-        int compare = report.getRule(o1).getType().compareTo(
+        if(o1.isEmpty() || o2.isEmpty())return 0;
+
+        int compare = report
+                .getRule(o1)
+                .getType()
+                .compareTo(
                 report.getRule(o2).getType()
         );
         if (compare == 0) compare = report.getRule(o1).getSeverity().compareTo(
