@@ -82,7 +82,7 @@ public class ComponentProvider extends AbstractDataProvider {
     private double getMinMetric(String metric){
         double min = Double.valueOf((String)components.get(0).get(metric));
         for(Map c:components){
-            min = Math.min(min, Double.valueOf((String)c.get(metric)));
+            min = Math.min(min, Double.valueOf((String)c.getOrDefault(metric, min)));
         }
         return min;
     }
@@ -93,7 +93,7 @@ public class ComponentProvider extends AbstractDataProvider {
     private double getMaxMetric(String metric){
         double max = Double.valueOf((String)components.get(0).get(metric));
         for(Map c:components){
-            max = Math.max(max, Double.valueOf((String)c.get(metric)));
+            max = Math.max(max, Double.valueOf((String)c.getOrDefault(metric, max)));
         }
         return max;
     }
@@ -103,8 +103,13 @@ public class ComponentProvider extends AbstractDataProvider {
      * */
     private double getMeanMetric(String metric){
         double sum = 0;
+        double size = 0;
         for(Map c:components){
-            sum += Double.valueOf((String)c.get(metric));
+            final String rawValue = (String)c.get(metric);
+            if(!rawValue.isEmpty()){
+                sum += Double.valueOf(rawValue);
+                size++;
+            }
         }
         // Return mean with 2 digits
         return Math.floor(100 * sum / (double) components.size()) / 100.;
